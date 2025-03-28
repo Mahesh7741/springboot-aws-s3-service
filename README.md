@@ -1,34 +1,86 @@
-# Spring Boot AWS S3 Application 
+# 🌩️ Spring Boot AWS S3 Service
+
 ![banner](./assets/banner.jpg)
 
-## 1. Introduction
-Amazon S3 is one of the most popular services from [Amazon Web Services](https://aws.amazon.com/), which provides object storage service that stores data as objects in buckets. An *object* could be any file type which we can attach metadata to describe it, and a *bucket* represents a container for objects.
+## 📌 1. Introduction
 
-## 2. Prerequisites
+Amazon S3 is a widely used **object storage service** from [Amazon Web Services (AWS)](https://aws.amazon.com/). It allows storing files (objects) in **buckets** and attaching metadata to describe them.
+
+This guide demonstrates how to integrate **Amazon S3** with a **Spring Boot application** to perform essential operations such as:
+
+✅ Uploading files  
+✅ Listing stored objects  
+✅ Downloading files  
+✅ Deleting files  
+
+---
+
+## 🔧 2. Prerequisites
+
+Before starting, ensure you have the following:
+
 - [Java 8+](https://docs.oracle.com/cd/E19182-01/820-7851/inst_cli_jdk_javahome_t/)
 - [Maven 3+](https://maven.apache.org/install.html)
 - [AWS Account](https://portal.aws.amazon.com/gp/aws/developer/registration/index.html)
-- [AWS Credentials and Region for Development](https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/setup-credentials.html)
-- [S3 Bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/creating-bucket.html)
-- Your favorite IDE or your loved CLI
+- [AWS Credentials & Region Setup](https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/setup-credentials.html)
+- [Amazon S3 Bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/creating-bucket.html)
+- Any preferred **IDE** or **CLI** for development
 
+---
 
-## 3. Project Structure
-The structure of this sample project is organized by following the MVC (a.k.a. **M**odel **V**iew **C**ontroller) Pattern. You can find more details about this pattern [here](https://examples.javacodegeeks.com/spring-mvc-architecture-overview-example/).
+## 📂 3. Project Structure
 
-The following are the base folders (packages) in which the project is organized and the purpose of each:
-- [📁 application](./src/main/java/br/com/example/davidarchanjo/application): contains the main class, annotated with `@SpringBootApplication`, which is responsible for booting up the application
-- [📁 config](./src/main/java/br/com/example/davidarchanjo/config): contains configuration class, annotated with `@Configuration`, which is responsible for defining the S3 client bean that will be used to perform operations on the bucket
-- [📁 controller](./src/main/java/br/com/example/davidarchanjo/controller): contains class, annotated with `@Controller`, which is responsible for processing REST requests for access and manipulation of the bucket and its contents
-- [📁 enumeration](./src/main/java/br/com/example/davidarchanjo/enumeration): contains enum definition for mapping file media type based on known file extensions
-- [📁 service](./src/main/java/br/com/example/davidarchanjo/service): contains service class, annotated with `@Service`, where all the logic to operate on the bucket is effectively implemented
+This project follows the **MVC (Model-View-Controller) Pattern**.
 
+| 📁 Package | Purpose |
+|------------|---------|
+| [`application`](./src/main/java/br/com/example/davidarchanjo/application) | Main class annotated with `@SpringBootApplication` to bootstrap the application. |
+| [`config`](./src/main/java/br/com/example/davidarchanjo/config) | Defines the **AWS S3 client bean** using `@Configuration`. |
+| [`controller`](./src/main/java/br/com/example/davidarchanjo/controller) | Handles **REST APIs** for bucket access & file operations (`@Controller`). |
+| [`enumeration`](./src/main/java/br/com/example/davidarchanjo/enumeration) | Enum definitions for mapping file types based on extensions. |
+| [`service`](./src/main/java/br/com/example/davidarchanjo/service) | Business logic for S3 operations (`@Service`). |
 
-## 4. Libraries and Dependencies
+---
+
+## 📦 4. Dependencies
+
+This project requires the following dependencies:
+
 - [Spring Web](https://docs.spring.io/spring-framework/docs/current/reference/html/web.html)
-- [Spring DevTools](https://docs.spring.io/spring-boot/docs/1.5.16.RELEASE/reference/html/using-boot-devtools.html)
+- [Spring Boot DevTools](https://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-devtools.html)
 - [AWS Java SDK](https://docs.aws.amazon.com/sdk-for-java/latest/developer-guide/home.html)
 - [Lombok](https://projectlombok.org/)
+
+### 🏗️ 5. Maven Dependencies (`pom.xml`)
+
+```xml
+<dependencies>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-devtools</artifactId>
+        <scope>runtime</scope>
+        <optional>true</optional>
+    </dependency>
+
+    <dependency>
+        <groupId>com.amazonaws</groupId>
+        <artifactId>aws-java-sdk</artifactId>
+        <version>1.12.70</version>
+    </dependency>
+
+    <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>1.18.20</version>
+        <scope>provided</scope>
+    </dependency>
+</dependencies>
+
 
 
 ## 5. Maven Dependencies
